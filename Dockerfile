@@ -8,10 +8,11 @@ RUN apt-get update
 RUN apt-get -y -q install memcached
 
 
-# user root:root
-RUN echo root:root | chpasswd
+# Memcached max memony size
+ENV MAX_MEMORY 64
 
 EXPOSE 11211
 USER daemon
 
-CMD    ["memcached","-m","64"]
+# supervisor to rule them all
+CMD ["/usr/bin/supervisord","-n"]
