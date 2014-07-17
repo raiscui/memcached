@@ -11,6 +11,8 @@ RUN apt-get -y install memcached
 # Memcached max memony size
 ENV MEMORY 64
 
+USER daemon
+
 EXPOSE 11211
 
 # supervisor to rule them all
