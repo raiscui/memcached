@@ -9,7 +9,7 @@ RUN apt-get -y install memcached
 
 
 # Memcached max memony size
-ENV MAX_MEMORY 64
+ENV MEMORY 64
 
 EXPOSE 11211
 
