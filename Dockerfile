@@ -12,7 +12,6 @@ RUN apt-get -y -q install memcached
 ENV MAX_MEMORY 64
 
 EXPOSE 11211
-USER daemon
 
 # supervisor to rule them all
 CMD ["/usr/bin/supervisord","-n"]
