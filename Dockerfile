@@ -2,17 +2,13 @@ FROM sylvainlasnier/ubuntu
 MAINTAINER  Sylvain Lasnier <sylvain.lasnier@gmail.com>
 
 # Install packages
-ENV DEBIAN_FRONTEND noninteractive
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached
 
-RUN apt-get update
-RUN apt-get -y install memcached
-
-
-# Memcached max memony size
-ENV MEMORY 64
+# memcached public variable 
+ENV MAX_MEMORY 64
+ENV BIND_IP 0.0.0.0
 
 EXPOSE 11211
 
-# supervisor to rule them all
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD ["/usr/bin/supervisord","-n"]
+CMD /usr/bin/memcached -u root -m $MAX_MEMORY -l $BIND_IP
