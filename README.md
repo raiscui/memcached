@@ -20,15 +20,15 @@ Usage
 
 Simple use of memcached docker image:
 
-	$ docker run --name memcached -d -p 11211 sylvainlasnier/memcached
-	125c0fc6da85cbc6141f43539565b3b743db169da05e297b821b0c29f17d2638
+        $ docker run -d -P --name memcached sylvainlasnier/memcached 
+	7b71841bc1ff83eaf5ba84c60114c4e1433ad40a235ba4f489d18200f7394795
 	$ docker ps
 	CONTAINER ID        IMAGE                             COMMAND                CREATED             STATUS              PORTS                      NAMES
-	125c0fc6da85        sylvainlasnier/memcached:latest   /bin/sh -c /usr/bin/   14 minutes ago      Up 14 minutes       0.0.0.0:49183->11211/tcp   memcached 
-	
+	7b71841bc1ff        sylvainlasnier/memcached:latest   "/usr/bin/memcached    6 seconds ago       Up 5 seconds        0.0.0.0:49156->11211/tcp   memcached           
+
 Test it:
 
-	$ nc 127.0.0.1 49183
+	$ nc `docker inspect -f '{{.NetworkSettings.IPAddress}}' 7b7184` 11211
 	stats
 	STAT uptime 2627
 	STAT time 1405695366
@@ -37,6 +37,8 @@ Test it:
 	...
 	STAT reclaimed 0
 	END
+
+Please replace container ID in nc command line with your ;)
 
 
 Advanced usage:
@@ -49,7 +51,7 @@ You can change:
 
 For example :
 
-	$ docker run  --rm -ti -e MAX_MEM=1024,MAX_CONN=10000 sylvainlasnier/memcached
+	$ docker run -d -P -e MAX_MEM=1024,MAX_CONN=10000 sylvainlasnier/memcached
 
 launch memcached docker with 1Go RAM and usable by 10000 simultaneous clients
 
