@@ -4,7 +4,7 @@ Memcached 1.4.14 Docker image
 Description
 -----------
 
-This is a Memcached 1.4.14 docker images based on Ubuntu 14.04 LTS. It is small and basic.
+This is a Memcached 1.4.14 docker images based on Ubuntu 14.10. It is small and basic.
 
 Its features is to delivered memcached service.  
 You will be able to choose the memcache size, by default 64Mo, the max connection number, by default 1024 and the bind address ip, by default 0.0.0.0.  
