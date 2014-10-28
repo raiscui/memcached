@@ -1,4 +1,4 @@
-FROM sylvainlasnier/ubuntu
+FROM phusion/baseimage
 MAINTAINER  Sylvain Lasnier <sylvain.lasnier@gmail.com>
 
 # Install packages
